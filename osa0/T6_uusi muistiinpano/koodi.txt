@@ -1,0 +1,7 @@
+note over selain:
+selain lisää uuden muistiinpanon
+omalle sisäiselle listalleen ja
+renderöi listan sivulle uudelleen
+end note
+selain->palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa { content: "Hello World!" }
+palvelin-->selain: Response status 201 { "message": "note created" }
