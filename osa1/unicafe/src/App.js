@@ -13,6 +13,11 @@ const App = () => {
   const handleNeutral = () => setNeutral(neutral + 1)
   const handleBad = () => setBad(bad + 1)
 
+  const total = good + neutral + bad;
+
+  const percentGood = () => total > 0 ? good / total * 100 + ' %' : '-'
+  const average = () => total > 0 ? (good - bad) / total : '-'
+
   return (
     <div>
       <h1>give feedback</h1>
@@ -24,6 +29,9 @@ const App = () => {
       <Stat name='good' value={good} />
       <Stat name='neutral' value={neutral} />
       <Stat name='bad' value={bad} />
+      <Stat name='all' value={total} />
+      <Stat name='average' value={average()} />
+      <Stat name='positive' value={percentGood()} />
 
     </div>
   );
