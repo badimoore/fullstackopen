@@ -2,7 +2,12 @@ import React, { useState } from "react";
 
 const Button = ({ handler, text }) => <button onClick={handler}>{text}</button>
 
-const StatisticLine = ({ text, value }) => <div>{text} {value}</div>
+const StatisticLine = ({ text, value }) => (
+  <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+  </tr>
+)
 
 const Statistics = props => {
   const [good, neutral, bad] = props.values
@@ -14,12 +19,16 @@ const Statistics = props => {
   if (total > 0) return (
     <>
       <h1>statistics</h1>
-      <StatisticLine text='good' value={good} />
-      <StatisticLine text='neutral' value={neutral} />
-      <StatisticLine text='bad' value={bad} />
-      <StatisticLine text='all' value={total} />
-      <StatisticLine text='average' value={average()} />
-      <StatisticLine text='positive' value={percentGood()} />
+      <table>
+        <tbody>
+          <StatisticLine text='good' value={good} />
+          <StatisticLine text='neutral' value={neutral} />
+          <StatisticLine text='bad' value={bad} />
+          <StatisticLine text='all' value={total} />
+          <StatisticLine text='average' value={average()} />
+          <StatisticLine text='positive' value={percentGood()} />
+        </tbody>
+      </table>
     </>
   )
   return <p>No feedback given</p>
