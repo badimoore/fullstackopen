@@ -1,7 +1,7 @@
 import React from "react";
 
 const App = () => {
-  const course = {
+  const courses = [{
     name: 'Half Stack application development',
     id: 1,
     parts: [
@@ -26,11 +26,29 @@ const App = () => {
         id: 4
       }
     ]
+  }, 
+  {
+    name: 'Node.js',
+    id: 2,
+    parts: [
+      {
+        name: 'Routing',
+        exercises: 3,
+        id: 1
+      },
+      {
+        name: 'Middlewares',
+        exercises: 7,
+        id: 2
+      }
+    ]
   }
+]
 
   return (
     <div>
-      <Course course={course} />
+      <h1>Web development curriculum</h1>
+      {courses.map(course => <Course course={course} />)}
     </div>
   );
 }
@@ -44,7 +62,7 @@ const Course = ({ course }) => (
 )
 
 const Header = ({ course }) => (
-  <h1>{course}</h1>
+  <h2>{course}</h2>
 )
 
 const Content = ({ parts }) => (
