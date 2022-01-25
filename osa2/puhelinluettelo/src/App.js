@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-
-const Person = ({ person }) => <div>{person.name} {person.number}</div>
+import PersonList from './components/PersonList';
+import Filter from './components/Filter';
+import NewPersonForm from './components/NewPersonForm';
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -29,20 +30,20 @@ const App = () => {
     setNewNumber('')
   }
 
+  const newPersonProps = {
+    newName,
+    setNewName,
+    newNumber,
+    setNewNumber,
+    handleSubmitClick
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
-      filter names containing <input value={filter} onChange={evt => setFilter(evt.target.value)} />
-
-      <form>
-        <h2>Add new number</h2>
-        <div>name: <input value={newName} onChange={(evt) => setNewName(evt.target.value)} /></div>
-        <div>number: <input value={newNumber} onChange={(evt) => setNewNumber(evt.target.value)} /></div>
-        <div><button type="submit" onClick={handleSubmitClick}>add</button></div>
-      </form>
-      <h2>Numbers</h2>
-      {persons.filter(person => person.name.toLowerCase().match(filter.toLowerCase()))
-      .map(person => <Person person={person} key={person.name} />)}
+      <Filter filter={filter} setFilter={setFilter} text='filter names containing:' />
+      <NewPersonForm {...newPersonProps} />
+      <PersonList list={persons.filter(person => person.name.toLowerCase().match(filter.toLowerCase()))} />
     </div>
   )
 }
