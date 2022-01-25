@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Person = ({person}) => <div>{person.name}</div>
+const Person = ({ person }) => <div>{person.name}</div>
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -10,6 +10,11 @@ const App = () => {
 
   const handleSubmitClick = evt => {
     evt.preventDefault()
+    if (persons.find(person => person.name === newName)) {
+      alert(`${newName} is already added to phonebook`);
+      return
+    }
+    
     const newPerson = {
       name: newName
     }
